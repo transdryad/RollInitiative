@@ -1,5 +1,6 @@
 package org.hazelv.RollInitiative;
 
+import io.github.togar2.fluids.MinestomFluids;
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.GameMode;
@@ -49,7 +50,7 @@ public class Main {
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
         InstanceContainer instanceContainer = instanceManager.createInstanceContainer(Objects.requireNonNull(dimensionRegistry.getKey(initRealm)));
 
-        instanceContainer.setGenerator(new TerrainGenerator(random.nextLong()));
+        instanceContainer.setGenerator(new TerrainGenerator(random.nextLong(), instanceContainer));
 
         instanceContainer.setChunkSupplier(LightingChunk::new);
 
@@ -57,9 +58,12 @@ public class Main {
         globalEventHandler.addListener(AsyncPlayerConfigurationEvent.class, event -> {
             final Player player = event.getPlayer();
             event.setSpawningInstance(instanceContainer);
-            player.setRespawnPoint(new Pos(0, 42, 0));
+            player.setRespawnPoint(new Pos(0, 100, 0));
             player.setGameMode(GameMode.CREATIVE);
         });
+
+        MinestomFluids.init();
+        MinecraftServer.getGlobalEventHandler().addChild(MinestomFluids.events());
 
         MojangAuth.init();
         OpenToLAN.open();

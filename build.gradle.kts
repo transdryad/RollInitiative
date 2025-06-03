@@ -8,6 +8,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://jitpack.io") }
 }
 
 java {
@@ -22,6 +23,7 @@ dependencies {
     implementation("net.minestom:minestom-snapshots:d1634fb586")
     implementation("org.slf4j:slf4j-simple:2.0.17")
     implementation("de.articdive:jnoise-pipeline:4.1.0")
+    implementation("com.github.TogAr2:MinestomFluids:master-SNAPSHOT")
 }
 
 tasks {
