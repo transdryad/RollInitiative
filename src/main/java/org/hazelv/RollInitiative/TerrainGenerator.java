@@ -24,7 +24,7 @@ public class TerrainGenerator implements Generator {
     final double persistence = 0.3;
     final int scale = 640;
     final int height_scale = 384;
-    final double waterHeight = 80;
+    final double waterHeight = 73;
 
     public TerrainGenerator(long seed, InstanceContainer parent) {
         this.seed = seed;
@@ -42,7 +42,7 @@ public class TerrainGenerator implements Generator {
                 double height = (fractalPerlin(bottom.x(), bottom.z()) * height_scale) + 64;
                 generationUnit.modifier().fill(bottom, bottom.add(1, 0, 1).withY(height), Block.STONE);
                 if (waterHeight >= bottom.y() && waterHeight <= generationUnit.absoluteEnd().y() && height < waterHeight) {
-                    generationUnit.modifier().fill(bottom.withY(height + 1), bottom.add(1, waterHeight, 1), Block.WATER);
+                    generationUnit.modifier().fill(bottom.withY(height), bottom.add(1, 0, 1).withY(waterHeight), Block.WATER);
                 }
             }
         }
