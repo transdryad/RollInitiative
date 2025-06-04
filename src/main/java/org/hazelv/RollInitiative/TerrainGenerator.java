@@ -41,9 +41,8 @@ public class TerrainGenerator implements Generator {
                 Point bottom = start.add(x, 0, z);
                 double height = (fractalPerlin(bottom.x(), bottom.z()) * height_scale) + 64;
                 generationUnit.modifier().fill(bottom, bottom.add(1, 0, 1).withY(height), Block.STONE);
-                if (80 >= generationUnit.absoluteStart().y() && 80 >= generationUnit.absoluteStart().y() && height <= 80) {
-                    System.out.println("maybe water?");
-                    generationUnit.modifier().fill(bottom.add(1, height + 1, 1), bottom.add(1, 80, 1), Block.WATER);
+                if (80 >= bottom.y() && 80 <= generationUnit.absoluteEnd().y() && height < 80) {
+                    generationUnit.modifier().fill(bottom.add(1, height + 1, 1), bottom.add(1, 80, 1), Block.OBSIDIAN);
                 }
             }
         }
