@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.Random;
 
 public class Main {
-    public static Random random = new Random();
+    private static final Random random = new Random();
 
     public static void main(String[] args) {
         MinecraftServer minecraftServer = MinecraftServer.init();
