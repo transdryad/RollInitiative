@@ -60,6 +60,12 @@ public class TerrainGenerator implements Generator {
                                         grass = true;
                                         generationUnit.modifier().fill(bottom.withY(height - 1), bottom.add(1, 0, 1).withY(height), worldBlock.block);
                                     }
+                                } else if (worldBlock.block == Block.SNOW_BLOCK) {
+                                    if (blockValue > worldBlock.threshold + ((worldBlock.minHeight - height) * 0.01)) {
+                                        generationUnit.modifier().fill(bottom.withY(height - 2), bottom.add(1, 0, 1).withY(height), worldBlock.block);
+                                    } else {
+                                        System.out.println(worldBlock.threshold - ((height - worldBlock.minHeight) * 0.06) + ", " + blockValue);
+                                    }
                                 } else {
                                     generationUnit.modifier().fill(bottom.withY(height - 3), bottom.add(1, 0, 1).withY(height), worldBlock.block);
                                 }
@@ -110,5 +116,6 @@ public class TerrainGenerator implements Generator {
         worldBlocks.add(new WorldBlock(Block.SAND, 1000, false, 0.4, 63, waterHeight + 2));
         worldBlocks.add(new WorldBlock(Block.GRASS_BLOCK, 1000, true, 0.15, waterHeight + 2, waterHeight + 22));
         worldBlocks.add(new WorldBlock(Block.DIRT, 1000, false, 0, waterHeight + 2, waterHeight + 30));
+        worldBlocks.add(new WorldBlock(Block.SNOW_BLOCK, 101, true, 0, 130, 385));
     }
 }

@@ -50,7 +50,7 @@ public class Main {
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
         InstanceContainer instanceContainer = instanceManager.createInstanceContainer(Objects.requireNonNull(dimensionRegistry.getKey(initRealm)));
 
-        instanceContainer.setGenerator(new TerrainGenerator(random.nextLong(), instanceContainer));
+        instanceContainer.setGenerator(new TerrainGenerator(100000000 + random.nextInt(900000000), instanceContainer));
 
         instanceContainer.setChunkSupplier(LightingChunk::new);
 
@@ -65,7 +65,7 @@ public class Main {
         MinestomFluids.init();
         MinecraftServer.getGlobalEventHandler().addChild(MinestomFluids.events());
 
-        MojangAuth.init();
+        //MojangAuth.init();
         OpenToLAN.open();
         MinecraftServer.setDifficulty(Difficulty.PEACEFUL);
         minecraftServer.start("0.0.0.0", 25565);
