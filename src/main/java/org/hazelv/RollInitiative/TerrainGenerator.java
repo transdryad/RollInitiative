@@ -61,10 +61,10 @@ public class TerrainGenerator implements Generator {
                                         generationUnit.modifier().fill(bottom.withY(height - 1), bottom.add(1, 0, 1).withY(height), worldBlock.block);
                                     }
                                 } else if (worldBlock.block == Block.SNOW_BLOCK) {
-                                    if (blockValue > worldBlock.threshold + ((worldBlock.minHeight - height) * 0.01)) {
+                                    if (blockValue > worldBlock.threshold + ((worldBlock.maxHeight - height) * 0.00177)) {
                                         generationUnit.modifier().fill(bottom.withY(height - 2), bottom.add(1, 0, 1).withY(height), worldBlock.block);
                                     } else {
-                                        System.out.println(worldBlock.threshold - ((height - worldBlock.minHeight) * 0.06) + ", " + blockValue);
+                                        System.out.println(worldBlock.threshold + ((worldBlock.maxHeight - height) * 0.01) + ", " + blockValue);
                                     }
                                 } else {
                                     generationUnit.modifier().fill(bottom.withY(height - 3), bottom.add(1, 0, 1).withY(height), worldBlock.block);
